@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Env
+.env
+ai_agent_env/
+
+# Whisper model files and audio
+*.wav
+*.mp3
+*.safetensors
+models/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Storeai_agent_env/
+ai_agent_env
