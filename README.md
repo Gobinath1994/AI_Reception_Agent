@@ -1,29 +1,27 @@
 
-# 🤖 AI Receptionist Chatbot — Johnston Group Australia
+---
 
-This project is an intelligent voice- and text-enabled chatbot assistant for Johnston Group Australia, providing company-specific responses using local data and speech transcription via Whisper.
+# 🤖 AI Receptionist Chatbot
 
-## 🏢 Supported Companies
+An intelligent, voice- and text-enabled chatbot assistant designed to deliver organization-specific responses using local data and offline speech transcription via Whisper.
 
-The chatbot supports the following Johnston Group divisions:
+---
 
-- **NWTIS** – Training, Inspection, and Certification  
-- **Liftequipt** – Forklift and Equipment Hire & Sales  
-- **BBS Forks** – Material Handling Equipment  
-- **NW Oil & Filter Supplies** – Industrial Oils & Filters  
+## 🏢 Supported Divisions
 
-All information is sourced from structured `faq_data.json` and official websites.
+The chatbot supports multiple business units or departments, defined in your custom FAQ dataset.
+All information is sourced from structured `faq_data.json` and optionally mirrored from official documentation or internal knowledge bases.
 
 ---
 
 ## 🔧 Features
 
-- ✅ Voice & Text Input Support  
-- ✅ Professional chat UI with speech transcription  
-- ✅ Responses powered by Mistral or LM Studio  
-- ✅ Brand detection to route questions contextually  
-- ✅ Runs 100% locally (no API key or internet required)  
-- ✅ Auto-cleanup for temporary audio files  
+* ✅ Voice & Text Input Support
+* ✅ Professional chat UI with speech transcription
+* ✅ Responses powered by a local LLM (e.g., Mistral via LM Studio)
+* ✅ Brand/domain detection to route context-specific responses
+* ✅ Runs 100% locally — no API key or internet required
+* ✅ Auto-cleanup for temporary audio files
 
 ---
 
@@ -35,9 +33,9 @@ AI_Reception_Agent/
 ├── agent.py                 # Logic to query model using FAQ
 ├── whisper_utils.py         # Whisper audio transcription
 ├── data/
-│   └── faq_data.json        # Company FAQs and contact info
-├── requirements.txt         # Dependencies
-└── README.md                # You're reading it
+│   └── faq_data.json        # FAQ and contact information
+├── requirements.txt         # Python dependencies
+└── README.md                # Project overview
 ```
 
 ---
@@ -45,15 +43,15 @@ AI_Reception_Agent/
 ## 🛠️ Installation
 
 ```bash
-# Clone repo
+# Clone the repository
 git clone https://github.com/your-org/AI_Reception_Agent.git
 cd AI_Reception_Agent
 
-# Create virtual environment
+# Create and activate environment
 conda create -n ai_agent_env python=3.11 -y
 conda activate ai_agent_env
 
-# Install dependencies
+# Install required packages
 pip install -r requirements.txt
 ```
 
@@ -61,11 +59,11 @@ pip install -r requirements.txt
 
 ## 🧠 Requirements
 
-- Python 3.11+
-- [Whisper](https://github.com/openai/whisper) (`base` model used)
-- Gradio
-- OpenAI client for local LLM (e.g., Mistral via LM Studio)
-- LM Studio (for local language model server)
+* Python 3.11+
+* [Whisper](https://github.com/openai/whisper) (uses `base` model)
+* Gradio
+* LM Studio or compatible local LLM server
+* Optional: GPU for faster transcription or generation
 
 ---
 
@@ -75,45 +73,47 @@ pip install -r requirements.txt
 # Activate environment
 conda activate ai_agent_env
 
-# Start the Gradio chatbot
+# Launch chatbot
 python app.py
 ```
 
-Visit [http://127.0.0.1:7860](http://127.0.0.1:7860) in your browser.
+Then visit: [http://127.0.0.1:7860](http://127.0.0.1:7860)
 
 ---
 
-## 🎙️ Voice Input Setup
+## 🎙️ Voice Input Instructions
 
-- Click on the microphone icon in the UI to record.
-- Speech will be transcribed using OpenAI Whisper and responded to via the chatbot.
+* Click the microphone icon in the UI to record your query
+* Audio will be transcribed using Whisper
+* The chatbot will generate a response based on the transcription
 
 ---
 
 ## 🧠 Customization
 
-### ✏️ Modify FAQ
+### ✏️ Edit the FAQ
 
-Edit `data/faq_data.json` to change or add company info.
+Update `data/faq_data.json` to define your own departments, services, and answers.
 
-### 🤖 Change Model
+### 🤖 Change the Language Model
 
-Update the model call in `agent.py`:
+Edit the model connection in `agent.py`:
 
 ```python
 client = OpenAI(base_url="http://localhost:1234/v1", api_key="not-needed")
 ```
 
-You can use:
-- Local Mistral model via LM Studio
-- Claude (Anthropic)
-- GPT-style API if available
+Compatible with:
+
+* Mistral models via LM Studio
+* OpenChat or Vicuna-style models
+* Claude / GPT-style APIs (if preferred)
 
 ---
 
-## 🧹 Reset Chat
+## 🧹 Reset the Chat
 
-To clear previous messages:
+To programmatically reset the conversation:
 
 ```python
 from agent import reset_chat
@@ -124,14 +124,16 @@ reset_chat()
 
 ## 📄 License
 
-This project is internal and customized for Johnston Group Australia.
+MIT License — You’re free to use, adapt, and redistribute this tool for internal or commercial purposes.
 
 ---
 
 ## 🤝 Contributing
 
-Feel free to propose improvements, UI updates, or add support for online services (like stock check or live chat).
+Contributions are welcome! Add new features, improve the UI, or suggest integrations (e.g., CRM, live support, appointment booking).
 
 ---
 
-Built with ❤️ to streamline reception and customer experience.
+Built with ❤️ to streamline receptionist tasks and improve user experience — 100% offline, customizable, and privacy-focused.
+
+---
