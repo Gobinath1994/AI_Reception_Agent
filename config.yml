@@ -1,0 +1,63 @@
+# config.yml
+
+version: "3.1"        # Rasa version compatibility
+language: en          # Language of the training data
+
+# --------------------------------------------------
+# NLU Pipeline — Defines how user messages are processed
+# --------------------------------------------------
+pipeline:
+  - name: WhitespaceTokenizer
+    # Splits sentences into words based on whitespace
+
+  - name: RegexFeaturizer
+    # Captures features based on regex patterns (useful for emails, phone numbers, etc.)
+
+  - name: LexicalSyntacticFeaturizer
+    # Extracts part-of-speech and word shape features (e.g., capitalized, digits)
+
+  - name: CountVectorsFeaturizer
+    # Converts words to vector representations based on their frequency (bag of words)
+
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 1
+    max_ngram: 4
+    # Second vectorizer that uses character-level n-grams
+    # Helps improve recognition of spelling variations and partial words
+
+  - name: DIETClassifier
+    epochs: 100
+    # Deep Intent Entity Transformer — classifies intent & extracts entities in one model
+
+  - name: EntitySynonymMapper
+    # Normalizes different ways of saying the same thing (e.g., "NYC" → "New York")
+
+  - name: ResponseSelector
+    epochs: 100
+    # Enables retrieval-based responses (e.g., FAQ-style from nlu.yml responses)
+
+  - name: FallbackClassifier
+    threshold: 0.7
+    ambiguity_threshold: 0.1
+    # Triggers fallback intent if confidence is too low or ambiguous
+
+# --------------------------------------------------
+# Policies — Define how Rasa chooses what to do next
+# --------------------------------------------------
+policies:
+  - name: MemoizationPolicy
+    # Remembers exact training stories and reuses them if matched
+
+  - name: RulePolicy
+    # Allows defining simple condition-action rules (used in rules.yml)
+
+  - name: UnexpecTEDIntentPolicy
+    max_history: 5
+    epochs: 100
+    # Helps handle out-of-scope/unexpected intents using contrastive learning
+
+  - name: TEDPolicy
+    max_history: 5
+    epochs: 100
+    # Transformer Embedding Dialogue Policy — Rasa's main policy for handling flexible conversations

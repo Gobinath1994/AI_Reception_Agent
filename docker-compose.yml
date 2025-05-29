@@ -1,0 +1,38 @@
+version: '3.8'  # Docker Compose file format version
+
+services:
+  ##############################################
+  # 1. RASA SERVER CONTAINER
+  ##############################################
+  rasa:
+    build: . # Uses the Dockerfile in the current directory to build image
+    ports:
+      - "5005:5005" # Exposes Rasa's HTTP API on host
+    volumes:
+      - .:/app # Mounts current directory into container (for live code reload)
+    command: rasa run --enable-api --cors "*" --debug  # Enables REST API access (e.g., /webhooks/rest/webhook) 
+                                                      # Allows requests from any origin (important for local web UI)
+                                                      # Enables verbose logging
+  ##############################################
+  # 2. RASA ACTION SERVER CONTAINER
+  ##############################################
+
+  actions:
+    build: . # Shares same image as rasa service
+    ports:
+      - "5055:5055" # Default port for custom action server
+    volumes:
+      - .:/app
+    command: rasa run actions # Starts the Rasa SDK action endpoint (e.g., for action_query_llm)
+
+  ##############################################
+  # 3. GRADIO UI CONTAINER
+  ##############################################
+
+  ui:
+    build: . # Also reuses same image to keep setup simple
+    ports:
+      - "7860:7860" # Gradio's default port for local apps
+    volumes:
+      - .:/app
+    command: python app.py # Launches the Gradio UI defined in app.py

@@ -1,0 +1,45 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+env/
+venv/
+.rasa/
+
+# Rasa models and training artifacts
+models/
+*.tar.gz
+
+# Whisper/Audio processing
+*.wav
+*.mp3
+*.m4a
+
+# Logs and runtime
+*.log
+*.tmp
+.cache/
+output/
+whisper_cache/
+
+# Jupyter/IPython
+.ipynb_checkpoints/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor/project files
+.vscode/
+.idea/
+
+# Env/config files
+.env
+.env.*
+
+# Docker overrides and misc
+docker-compose.override.yml
+*.pid

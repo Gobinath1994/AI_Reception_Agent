@@ -1,0 +1,39 @@
+version: "3.1"
+nlu:
+- intent: faq_company_overview
+  examples: |
+    - Overview of BBS Forks Australia
+    - Overview of Liftequipt
+    - Overview of North West Oil and Filter Supplies
+    - Overview of North West Training and Inspection Services (NWTIS)
+    - Tell me about BBS Forks Australia
+    - Tell me about Liftequipt
+    - Tell me about North West Oil and Filter Supplies
+    - Tell me about North West Training and Inspection Services (NWTIS)
+    - What does BBS Forks Australia do?
+    - What does Liftequipt do?
+    - What does North West Oil and Filter Supplies do?
+    - What does North West Training and Inspection Services (NWTIS) do?
+- intent: faq_services
+  examples: |
+    - Do you provide confined space entry and working at heights training?
+    - Do you provide dogging and rigging courses?
+    - Do you provide elevated work platform (ewp) training?
+    - Do you provide equipment hire including generators, trailers, and pressure washers?
+    - Do you provide equipment servicing and repairs?
+    - Do you provide equipment servicing and support?
+    - Do you provide forklift hire with flexible terms?
+    - Do you provide forklift operation licensing?
+    - Do you provide mechanical inspections for classified and designated machinery?
+    - Do you provide new and used forklift sales?
+    - Do you provide supply of materials handling equipment?
+    - Do you provide supply of oils and filters for various applications?
+    - Do you provide verification of competency (voc) assessments?
+    - List the services from BBS Forks Australia.
+    - List the services from Liftequipt.
+    - List the services from North West Oil and Filter Supplies.
+    - List the services from North West Training and Inspection Services (NWTIS).
+    - What services does BBS Forks Australia offer?
+    - What services does Liftequipt offer?
+    - What services does North West Oil and Filter Supplies offer?
+    - What services does North West Training and Inspection Services (NWTIS) offer?

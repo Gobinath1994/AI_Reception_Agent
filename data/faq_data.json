@@ -1,0 +1,71 @@
+{
+    "johnston_group_australia": {
+      "overview": "The Johnston groups australia is a collective of specialised companies offering services in lifting, equipment hire, inspection, maintenance, and supply. Their capabilities include managing all types of mobile cranes, forklifts, EWP (Elevated Work Platforms), trucks, excavators, and more. They also provide training, certification, and safety inspections. Learn more at https://www.nwtis.com.au",
+      "contact": {
+        "phone": "(08) 9144 4250",
+        "mobile": "0418 938 755",
+        "email": "brian@nwtis.com.au"
+      },
+      "companies": {
+        "nwtis": {
+          "name": "North West Training and Inspection Services (NWTIS)",
+          "overview": "NWTIS was established in the late 1980s to provide specialised inspection services to the mining, oil, gas, and industrial sectors. Based in the Pilbara, it has been a reliable provider of lifting equipment inspections and training.",
+          "services": [
+            "Elevated Work Platform (EWP) training",
+            "Forklift operation licensing",
+            "Dogging and rigging courses",
+            "Confined space entry and working at heights training",
+            "Verification of Competency (VOC) assessments",
+            "Mechanical inspections for classified and designated machinery"
+          ],
+          "locations": ["7 Parton Close, Karratha WA 6714"],
+          "phone": "(08) 9144 4250",
+          "email": null,
+          "website": "https://www.nwtis.com.au"
+        },
+        "liftequipt": {
+          "name": "Liftequipt",
+          "overview": "Liftequipt is a privately owned, Pilbara-based materials handling and equipment hire service provider. They specialize in innovative solutions, service excellence, and on-time delivery.",
+          "services": [
+            "New and used forklift sales",
+            "Forklift hire with flexible terms",
+            "Equipment servicing and repairs",
+            "Equipment hire including generators, trailers, and pressure washers"
+          ],
+          "locations": [
+            "Unit 1/4 Sobek Pass, Bibra Lake WA 6163",
+            "1498 Lambert Rd, Karratha Industrial Estate WA 6714",
+            "20 Bass Ct, Keysborough VIC 3173"
+          ],
+          "phone": "1300-444-422",
+          "email": "info@liftequipt.com.au",
+          "website": "https://liftequipt.com.au"
+        },
+        "bbs_forks": {
+          "name": "BBS Forks Australia",
+          "overview": "BBS Forks Australia is a WA-based materials handling company that focuses on high-quality products, support, and service for equipment and industrial needs.",
+          "services": [
+            "Supply of materials handling equipment",
+            "Equipment servicing and support"
+          ],
+          "locations": [],
+          "phone": null,
+          "email": null,
+          "website": "http://www.bbsforks.com.au"
+        },
+        "nw_oil_filters": {
+          "name": "North West Oil and Filter Supplies",
+          "overview": "An independent supplier of premium oils and filters servicing Karratha and surrounding areas. Originally established to support Johnston Group fleets, it now caters to a broader market.",
+          "services": [
+            "Supply of oils and filters for various applications"
+          ],
+          "locations": [],
+          "phone": null,
+          "email": null,
+          "website": "https://www.nwtis.com.au"
+        }
+      }
+    }
+  }
+
+  

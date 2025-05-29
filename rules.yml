@@ -1,0 +1,19 @@
+version: "3.1" # Specifies compatibility with Rasa Open Source version 3.1+
+
+rules:
+# -----------------------------------------------------------------------------
+# Rule: Company Overview Request
+# When the user asks for information about the company, this rule triggers.
+# -----------------------------------------------------------------------------
+  - rule: Handle company overview questions
+    steps:
+      - intent: faq_company_overview # Detected intent for company background
+      - action: action_query_llm # Custom action calls Mistral LLM via LM Studio
+# -----------------------------------------------------------------------------
+# Rule: Services Inquiry
+# When the user asks about services, trigger LLM-backed response.
+# -----------------------------------------------------------------------------
+  - rule: Handle service-related questions
+    steps:
+      - intent: faq_services # Detected intent for asking services provided
+      - action: action_query_llm # Uses LLM to generate company/service-specific reply
