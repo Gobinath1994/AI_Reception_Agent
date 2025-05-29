@@ -1,88 +1,133 @@
-# 🤖 AI Receptionist Chatbot — Johnston Group (Rasa + LM Studio + Whisper)
+# 🤖 AI Receptionist Chatbot
 
-This project is a multimodal, locally-hosted AI receptionist designed for Johnston Group Australia. It combines natural language understanding (NLU), local large language models (LLMs), speech-to-text (Whisper), and a custom UI.
-
----
-
-## 📦 Features
-
-- **Text + Voice Input** via Gradio UI
-- **Intent Detection** using Rasa NLU
-- **LLM Responses** using Mistral 7B via LM Studio (OpenAI-compatible API)
-- **Audio Transcription** using Whisper
-- **Custom Branding Context** for multiple companies (e.g., Liftequipt, NWTIS)
-- **Dockerized** for reproducibility
+An intelligent, voice- and text-enabled chatbot assistant designed for organizations with multiple business units. This assistant uses local large language models (like Mistral via LM Studio), offline speech-to-text using Whisper, and a sleek Gradio UI for interaction — all running 100% locally for privacy and control.
 
 ---
 
-## 🧠 Architecture
+## 🏗️ Features
 
-```
-[User Text/Speech] → [Gradio UI] → [Rasa NLU] → [Intent]
-                                     ↓
-                                 [action_query_llm]
-                                     ↓
-                            [agent.py + LM Studio API]
-                                     ↓
-                                 [Mistral Model]
-```
+- ✅ Voice and text input via Gradio
+- ✅ Offline Whisper-based audio transcription
+- ✅ Integration with local Mistral model using LM Studio (OpenAI-compatible API)
+- ✅ JSON-based FAQ knowledge base per brand or department
+- ✅ Custom brand detection and contextual prompt generation
+- ✅ Rasa backend for intent detection, routing, and fallback handling
+- ✅ Fully Dockerized deployment with separate services for Rasa, Actions, and UI
 
 ---
 
-## 🗂️ Project Structure
+## 📁 Project Structure
 
 ```
-AI_Reception_Agent_Project/
-├── app.py                   # Gradio UI for chat and audio
-├── agent.py                 # Brand-aware prompt manager + LLM query
-├── whisper_utils.py         # Audio → text transcription via Whisper
-├── actions.py               # Rasa custom action
-├── domain.yml               # Intents, responses, actions
-├── rules.yml                # Rules for handling intents
-├── config.yml               # NLU pipeline + policies
-├── requirements.txt         # Whisper + UI deps
-├── rasa_requirements.txt    # Rasa SDK + server
-├── Dockerfile               # Unified Docker container build
-├── docker-compose.yml       # Run rasa, actions, and UI in one command
-└── data/
-    ├── faq_data.json        # Structured FAQs for multiple brands
-    └── nlu.yml              # Rasa training examples
+AI_Reception_Agent/
+├── app.py                 # Gradio UI
+├── agent.py               # Prompt router and LLM interface
+├── actions.py             # Rasa custom action to call LLM
+├── whisper_utils.py       # Whisper STT utilities
+├── data/
+│   └── faq_data.json      # Structured FAQ data per company
+├── models/                # Rasa models (ignored in Git)
+├── config.yml             # Rasa NLU pipeline configuration
+├── domain.yml             # Intents, responses, actions
+├── rules.yml              # Rule-based policy handling
+├── rasa_requirements.txt  # Rasa-specific dependencies
+├── requirements.txt       # General project requirements
+├── Dockerfile             # Single Docker image definition
+├── docker-compose.yml     # Multi-container setup
+└── README.md              # This file
 ```
 
 ---
 
-## 🚀 Running the Project (Locally with Docker)
+## 🧠 Getting Started
 
-### 1. ✅ Prerequisites
-- [Docker Desktop](https://www.docker.com/products/docker-desktop)
-- [LM Studio](https://lmstudio.ai) running with Mistral and REST API enabled at `http://localhost:1234`
+### 1. Clone and Set Up
 
-### 2. 🔧 Build and Start
 ```bash
-docker compose build --no-cache
-docker compose up
+git clone https://github.com/YOUR_ORG/AI_Reception_Agent.git
+cd AI_Reception_Agent
+
+conda create -n ai_agent python=3.8 -y
+conda activate ai_agent
+
+pip install -r requirements.txt
+pip install -r rasa_requirements.txt
 ```
 
-### 3. 🧪 Test the Chatbot
-- Open browser: [http://localhost:7860](http://localhost:7860)
-- Speak or type a question
-- The bot answers using Rasa + LLM
+### 2. Run Locally with Docker
+
+```bash
+docker compose up --build
+```
+
+Services:
+- `http://localhost:7860` → Gradio UI
+- `http://localhost:5005` → Rasa
+- `http://localhost:5055` → Rasa actions
 
 ---
 
-## 🧩 FAQs
+## 🗂️ FAQ Management
 
-- **How does LLM integration work?**
-  The `agent.py` module formats the user question and sends it to LM Studio’s `/v1/chat/completions` endpoint using the OpenAI-compatible API.
+Update `data/faq_data.json` to define your business units:
 
-- **How is audio handled?**
-  Gradio records audio and sends it as a NumPy array to Whisper for transcription.
-
-- **What model does it use?**
-  Mistral 7B GGUF format running locally through LM Studio (compatible with OpenAI API).
+```json
+{
+  "your_org": {
+    "overview": "We are a multi-brand service provider.",
+    "contact": {"email": "info@example.com"},
+    "companies": {
+      "brand_a": {
+        "name": "Brand A",
+        "services": ["Training", "Inspections"],
+        "locations": ["Melbourne", "Sydney"],
+        "phone": "1234 5678"
+      }
+    }
+  }
+}
+```
 
 ---
 
-## 📬 Need Help?
+## 🎯 Custom Rasa Intents and Routing
 
-Feel free to reach out for deployment support, cloud hosting, or adding new company data to the bot.
+Edit `domain.yml`, `rules.yml`, and `config.yml` to define how intents like `faq_services` or `faq_company_overview` are routed to the `action_query_llm`.
+
+---
+
+## 🧠 Local LLM Setup (LM Studio)
+
+1. Install [LM Studio](https://lmstudio.ai)
+2. Load a compatible model (e.g., Mistral-7B)
+3. Enable the OpenAI-compatible server at `http://localhost:1234`
+4. Ensure `agent.py` and `actions.py` are pointing to this URL
+
+---
+
+## 🎙️ Voice Input
+
+Whisper is used for offline speech-to-text.
+
+Dependencies:
+- `ffmpeg`
+- `torch`
+- `whisper`
+
+Microphone input is handled directly via Gradio's `Audio` component.
+
+---
+
+## 🧾 License
+
+MIT License — You’re free to use, modify, and redistribute this tool.
+
+---
+
+## 🛠️ Contributing
+
+Feel free to open issues or submit PRs for improvements. Add integrations (e.g., CRM, appointment booking), or extend with multilingual support.
+
+---
+
+Built with ❤️ for teams who want AI automation without sending data to the cloud.
